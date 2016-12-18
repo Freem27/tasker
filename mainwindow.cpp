@@ -17,7 +17,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connectConfig.login=s->value("dbLogin","").toString();
     connectConfig.isAutoConnect=s->value("dbIsAutoConnect",false).toBool();
 
-
     fdb=QSqlDatabase::addDatabase("QIBASE","fdb");
     if(connectConfig.isAutoConnect)
     {
@@ -98,8 +97,9 @@ void MainWindow::openConnectForm(bool exitOnClose, bool editManual)
 void MainWindow::reloadCurrentUserInfo()
 {
     qDebug()<<"reloadCurrentUserInfo";
-   // if(cui)
-   //     delete cui;
+    qDebug()<<cui;
+    if(cui)
+        delete cui;
 
     cui=new currentUserInfo;
     cui->login=fdb.userName();
